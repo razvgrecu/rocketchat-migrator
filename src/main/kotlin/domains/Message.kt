@@ -2,6 +2,7 @@ package domains
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import tools.EnvironmentTools
 
 @Serializable
 data class Message(
@@ -21,7 +22,7 @@ data class Message(
             append("Attachments:")
             appendLine()
             attachments.forEach { attachment ->
-                val link = "(https://chat.cloudflight.io${attachment.link}.jpg)"
+                val link = "(${EnvironmentTools.INSTANCE_NAME}${attachment.link}.jpg)"
                 when {
                     attachment.title.isBlank() && attachment.link.isBlank() -> append("")
                     attachment.title.isBlank() -> append("[Link]$link")
